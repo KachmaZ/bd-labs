@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работа с MySQL на Node.js</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem 0;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        form {
+            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        input[type="text"] {
+            padding: 0.5rem;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        footer {
+            margin-top: auto;
+            padding: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Работа с MySQL на Node.js</h1>
+    </header>
+    <form action="." method="post">
+        <label for="col1">Значение 1:</label>
+        <input type="text" id="col1" name="col1" value="Первый ...">
+        <label for="col2">Значение 2:</label>
+        <input type="text" id="col2" name="col2" value="Второй параметр">
+        <label for="col3">Значение 3:</label>
+        <input type="text" id="col3" name="col3" value="Третий параметр ...">
+        <input type="submit" value="Добавить">
+    </form>
+    <button class="delete-button" onclick="window.location.href='/delete'">Удалить последние 10 записей</button>
+    <table>
+        @tr
+    </table>
+    <footer>
+        Версия базы данных: <b>@ver</b>
+    </footer>
+</body>
+</html>
