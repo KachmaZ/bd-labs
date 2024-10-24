@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Вторая лабораторная работа в MySQL на Node.js</title>
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+        text-align: center;
+    }
+    table {
+        width: 93%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+    tr:nth-child(odd) { 
+        background-color: #489341; 
+    }
+    tr:nth-child(even) { 
+        background-color: #5dae47; 
+    }
+    tr:first-child { 
+        background-color: #37662a;
+        font-weight: bold;
+    }
+    tr {
+        opacity: 0.77;
+    }
+    tr:nth-child(n+2):hover {
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+        background-color: #24421b;
+    }
+    td {
+        padding: 5px;
+        position: relative;
+        border: 1px solid #333;
+        height: 20px;
+    }
+    td:first-child {
+        width: 35px;
+        text-align: center;
+    }
+    h1, h1 a:visited {
+        color: #3f873f;
+        background-color: #fff;
+        font-size: 30px;
+        font-family: Roboto, Geneva, Arial, Helvetica, sans-serif;
+    }
+    h1 a:hover {
+        color: #57a645;
+    }
+    a {
+        text-decoration: none;
+    }
+    label {
+        font-size: 16px;
+        text-decoration: underline;
+        margin-left: 5px;
+    }
+    div {
+        display: contents;
+        font-size: 21px;
+        font-weight: bold;
+    }
+    input[type="submit"] {
+        cursor: pointer;
+    }
+    input[type="text"] {
+        font-style: italic;
+    }
+</style>
+<body>
+    <h1><a href=".">Как можно работать с таблицами в MySQL на Node.js</a></h1>
+    <form action="." method="post">
+        <label>Координаты</label><div> : </div><input type="text" name="col1" value="00h 42m 44.3s +41° 16′ 9″" />
+        <input type="submit" value="Добавить" />
+    </form>
+    <br />
+    <table>
+        @tr
+    </table>
+    <p>Версия базы данных: 
+        <b>
+            @ver
+        </b>
+    </p>
+</body>
+</html>
