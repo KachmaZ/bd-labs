@@ -53,22 +53,59 @@ function ViewVer(res) {
     res.write(results[0].ver);
 }
 
+// Функция вызова процедуры JoinTables
+function callJoinTables(table1, table2) {
+    return new Promise((resolve, reject) => {
+        const query = `CALL JoinTables(?, ?)`;
+        connection.execute(query, [table1, table2], (err, results) => {
+            if (err) {
+                console.error("Ошибка при выполнении запроса: " + err.message);
+                reject(err);
+            } else {
+                console.log("Результаты запроса: ", results);
+                resolve(results);
+            }
+        });
+    });
+}
+
+
 const server = http.createServer((req, res) => {
-    reqPost(req, res);
-    console.log('Loading...');
+    if (req.url === '/join') {
+        // Вызов процедуры combine_data для таблиц Sector и Object
+        callJoinTables('Sector', 'Object').then(results => {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.write('<h2>Combined Data</h2><table border="1">');
+            res.write('<tr><th>ID</th><th>Data</th></tr>');
+            results[0].forEach(row => {
+                res.write('<tr>');
+                for (let key in row) {
+                    res.write(<td>${row[key]}</td>);
+                }
+                res.write('</tr>');
+            });
+            res.write('</table>');
+            res.end();
+        }).catch(err => {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.write('Ошибка при вызове процедуры');
+            res.end();
+        });
+    } else {
+        reqPost(req, res);
 
-    res.statusCode = 200;
+        res.statusCode = 200;
 
-    const filePath = path.join(__dirname, 'select.html');
-    const array = fs.readFileSync(filePath).toString().split("\n");
-    console.log(filePath);
-    for (let i in array) {
-        if ((array[i].trim() != '@tr') && (array[i].trim() != '@ver')) res.write(array[i]);
-        if (array[i].trim() == '@tr') ViewSelect(res);
-        if (array[i].trim() == '@ver') ViewVer(res);
-    }
-    res.end();
-    console.log('1 User Done.');
+        const filePath = path.join(__dirname, 'select.html');
+        const array = fs.readFileSync(filePath).toString().split("\n");
+        for (let i in array) {
+            if (array[i].trim() !== '@tr' && array[i].trim() !== '@ver') res.write(array[i]);
+            if (array[i].trim() === '@tr') ViewSelect(res);
+            if (array[i].trim() === '@ver') ViewVer(res);
+        }
+        res.end();
+        console.log('1 User Done.');
+
 });
 
 const hostname = '127.0.0.1';
